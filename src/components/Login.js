@@ -4,14 +4,22 @@ import checkValiDate from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/Firebase";
+import { addUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
+import { AVTAR_URL } from "../utils/constrant";
 
 const Login = () => {
   const [isloggedIn, setIsloggedIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
+
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+
   const handleButtonClick = () => {
     // validate the data /form
     const message = checkValiDate(email.current.value, password.current.value);
@@ -26,9 +34,31 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed up
+          // Signed up => Profile updated!
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: AVTAR_URL,
+          })
+            .then(() => {
+              // dispatch action
+
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .then(() => {})
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -44,7 +74,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -75,7 +105,8 @@ const Login = () => {
           {isloggedIn ? "Sign In" : "Sign Up"}
         </h1>
         {!isloggedIn && (
-          <input
+          <input 
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-2 my-2 w-full rounded bg-gray-800"

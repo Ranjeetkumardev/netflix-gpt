@@ -1,12 +1,17 @@
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import Header from "./Header";
+import MainContainer from "./mainContainer";
+import SecondaryContainer from "./secondaryContainer";
 
-const Browse = () => {
+const Browse = () => { 
+  useNowPlayingMovies();
   return (
-    <div>
-      <h1 className=" font-bold"> Browse</h1>
-    </div>
-  )
-}
+    <>
+      <Header />
+      <MainContainer />
+      <SecondaryContainer/>
+    </>
+  );
+};
 
-export default Browse
-
-
+export default Browse;
