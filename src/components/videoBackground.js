@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import useMovieTailer from '../hooks/useMovieTailer';
 const VideoBackground = ({ movieId }) => {
-  const tailerVideo = useSelector((store) => store.movies?.tailerVideo);
+  const tailerVideo = useSelector((store) => store.movies?.tailerVideo); 
   useMovieTailer(movieId);
   return (
     <div className='w-screen'>
