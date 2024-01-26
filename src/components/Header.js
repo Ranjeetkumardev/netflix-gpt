@@ -58,15 +58,15 @@ const Header = () => {
   
   return (
     <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex justify-between">
-      {/* <img
-        className="w-48 "
+      <img
+        className="w-36 md:w-48 "
         src={LOGO}
         alt="logo"
-      /> */}
+      />
 
       {user && (
         <div className="flex  mr-2 my-auto">
-          {/* <img
+           {/* <img
             className="w-10 p-1 rounded-3xl"
             src={user.photoURL}
             alt="LoginLogo"
