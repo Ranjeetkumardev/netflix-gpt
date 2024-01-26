@@ -6,6 +6,8 @@ import { useEffect } from "react";
 const useMovieTailer = (movieId) => {
   // fetch tailer video
   const dispatch = useDispatch();
+    const tailerVideo = useSelector((store) => store.movies.tailerVideo);
+
   const getMoviesVideos = async () => {
     const data = await fetch("https://api.themoviedb.org/3/movie/"+movieId+"/videos?language=en-US",API_OPTIONS);
     const json = await data.json();
@@ -15,7 +17,8 @@ const useMovieTailer = (movieId) => {
     dispatch(addTailerVideos(tailer));
   };
   useEffect(() => {
-    getMoviesVideos();
+    //This concept is called memoization => that means movies is allreaady in store then don't do the API call otherwise do 
+  !tailerVideo && getMoviesVideos();
   }, []);
 };
 
