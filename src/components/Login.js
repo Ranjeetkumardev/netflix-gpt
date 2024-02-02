@@ -90,18 +90,18 @@ const Login = () => {
 
   return (
     <div>
+      <div className="absolute ">
       <Header />
-      <div className="absolute">
-        <img
+        <img className="h-screen object-cover w-screen"
           src="https://assets.nflxext.com/ffe/siteui/vlv3/c38a2d52-138e-48a3-ab68-36787ece46b3/eeb03fc9-99c6-438e-824d-32917ce55783/IN-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt="banner"
         />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute w-3/12 p-12 my-40 mx-auto right-0 left-0 bg-black text-white rounded-lg bg-opacity-80"
+        className="absolute md:w-3/12 p-8 md:p-10 my-28 md:my-40 mx-12 sm:mx-24 md:mx-auto right-0 left-0 bg-black text-white rounded-lg bg-opacity-80"
       >
-        <h1 className="font-bold text-2xl py-4">
+        <h1 className="font-bold text-xl md:text-2xl py-0 md:py-4">
           {isloggedIn ? "Sign In" : "Sign Up"}
         </h1>
         {!isloggedIn && (
