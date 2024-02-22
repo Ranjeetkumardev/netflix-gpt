@@ -113,13 +113,13 @@ const Login = () => {
           />
         )}
         <input
-          ref={email}
+         ref={email}
           type="text"
           placeholder="Email Address"
           className="p-2 my-2 w-full rounded bg-gray-800"
         />
         <input
-          ref={password}
+         ref={password}
           type="Password"
           placeholder="Password"
           className="p-2 my-2 w-full rounded bg-gray-800"
